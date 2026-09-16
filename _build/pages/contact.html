@@ -1,0 +1,182 @@
+
+<section class="phero">
+  <div class="shell phero__inner">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>/</span><span>Contact</span>
+    </nav>
+    <p class="eyebrow eyebrow--light" data-reveal>Start here</p>
+    <h1 data-reveal style="--d:80ms">Tell us what you want to study.</h1>
+    <p class="lead" data-reveal style="--d:160ms">
+      The more specific you are, the more useful our reply will be. Subject, current
+      qualifications, English level, and roughly what your family can commit per year
+      &mdash; those four things let us give you a real answer instead of a brochure.
+    </p>
+  </div>
+</section>
+
+<section class="section shell">
+  <div class="grid g-split" style="gap:clamp(32px,5vw,72px);align-items:start">
+
+    <div data-reveal="left">
+      <p class="eyebrow">Direct contact</p>
+      <h2 style="margin-bottom:24px">Who you will hear from.</h2>
+      <p>
+        Enquiries are read and answered by an advisor, usually within two working days.
+        Not an auto-responder, and not a different person each time.
+      </p>
+
+      <div class="grid" style="gap:14px;margin-top:28px">
+        <article class="card card--paper">
+          <span class="card__tag">Students &amp; families</span>
+          <p style="margin:0"><a class="tlink" href="mailto:hello@eurohellenic.com">hello@eurohellenic.com</a></p>
+        </article>
+        <article class="card card--paper">
+          <span class="card__tag">Schools, counsellors &amp; agents</span>
+          <p style="margin:0"><a class="tlink" href="mailto:partners@eurohellenic.com">partners@eurohellenic.com</a></p>
+        </article>
+      </div>
+
+      <div class="placeholder" style="margin-top:24px">
+        <b>Handoff note</b>
+        Add a phone number, WhatsApp link and office address here before launch. In the markets
+        this site targets, WhatsApp is the primary channel and its absence costs enquiries. Also
+        confirm both email addresses exist and are monitored.
+      </div>
+
+      <div style="margin-top:32px">
+        <h3 style="margin-bottom:14px;font-size:22px">Before you write</h3>
+        <ul style="list-style:none;display:grid;gap:12px;font-size:14px;color:var(--ink-soft)">
+          <li style="display:grid;grid-template-columns:auto 1fr;gap:12px">
+            <span style="color:var(--gold);font-weight:700">&rarr;</span>
+            Have your latest transcript or results to hand, even if only as a photo.
+          </li>
+          <li style="display:grid;grid-template-columns:auto 1fr;gap:12px">
+            <span style="color:var(--gold);font-weight:700">&rarr;</span>
+            Know your IELTS band if you have sat it, or say that you have not.
+          </li>
+          <li style="display:grid;grid-template-columns:auto 1fr;gap:12px">
+            <span style="color:var(--gold);font-weight:700">&rarr;</span>
+            Have a realistic annual budget in mind &mdash; it changes the advice entirely.
+          </li>
+          <li style="display:grid;grid-template-columns:auto 1fr;gap:12px">
+            <span style="color:var(--gold);font-weight:700">&rarr;</span>
+            Tell us your target intake month, so we can say whether it is achievable.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-reveal="right">
+      <form class="form" data-enquiry novalidate
+            style="border:1px solid var(--line);box-shadow:var(--shadow-md)">
+        <!-- Web3Forms: paste your free access key below. See README. -->
+        <input type="hidden" name="access_key" value="YOUR-WEB3FORMS-ACCESS-KEY">
+        <input type="hidden" name="subject" value="New student enquiry from eurohellenic.com">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+        <div class="form__status" role="status" aria-live="polite"></div>
+
+        <div class="form__row">
+          <label>Full name *
+            <input type="text" name="name" required autocomplete="name" placeholder="Your full name">
+          </label>
+          <label>Email *
+            <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+          </label>
+        </div>
+
+        <div class="form__row">
+          <label>Country of residence
+            <input type="text" name="country" autocomplete="country-name" placeholder="Where you live now">
+          </label>
+          <label>Phone or WhatsApp
+            <input type="tel" name="phone" autocomplete="tel" placeholder="Include country code">
+          </label>
+        </div>
+
+        <div class="form__row">
+          <label>Study level
+            <select name="level">
+              <option>Undergraduate</option>
+              <option>Postgraduate</option>
+              <option>Foundation / English preparation</option>
+              <option>Tutoring only (IELTS, IGCSE, A Levels)</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label>Target intake
+            <select name="intake">
+              <option>Next available</option>
+              <option>Autumn (September/October)</option>
+              <option>Spring (January/February)</option>
+              <option>Following academic year</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form__row">
+          <label>Field of study
+            <input type="text" name="field" placeholder="e.g. Computer Science, Business, Psychology">
+          </label>
+          <label>English level
+            <select name="english">
+              <option>Not tested yet</option>
+              <option>IELTS below 5.5</option>
+              <option>IELTS 5.5 - 6.0</option>
+              <option>IELTS 6.0 - 6.5</option>
+              <option>IELTS 7.0 or above</option>
+              <option>Other qualification (PTE, Cambridge, TOEFL)</option>
+            </select>
+          </label>
+        </div>
+
+        <label>Approximate annual budget, tuition and living combined
+          <select name="budget">
+            <option>Under &euro;12,000</option>
+            <option>&euro;12,000 - &euro;18,000</option>
+            <option>&euro;18,000 - &euro;25,000</option>
+            <option>Over &euro;25,000</option>
+            <option>Prefer not to say yet</option>
+          </select>
+        </label>
+
+        <label>Tell us about your situation
+          <textarea name="message" rows="5"
+            placeholder="Your current qualifications and grades, what you want to study, and anything you are unsure about. The more detail, the more useful our reply."></textarea>
+        </label>
+
+        <button class="btn btn--gold btn--block" type="submit">
+          Send my enquiry <span class="arr" aria-hidden="true">&rarr;</span>
+        </button>
+
+        <p class="form__note">
+          * Required. We reply within two working days. By sending this form you agree that we
+          may contact you about your enquiry. We do not sell your details, pass them to
+          third-party agents, or add you to a marketing list.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section--navy section--tight">
+  <div class="shell">
+    <div class="grid g-3">
+      <article class="card card--navy" data-reveal>
+        <h3>Not sure Greece is right?</h3>
+        <p>Say so in the form. We will give you an honest read on whether it fits your goal &mdash; including when the answer is no.</p>
+        <div class="card__foot"><a class="tlink tlink--gold" href="why-greece.html">Where Greece does not fit <span class="arr" aria-hidden="true">&rarr;</span></a></div>
+      </article>
+      <article class="card card--navy" data-reveal>
+        <h3>Want the numbers first?</h3>
+        <p>Build your own cost estimate and read the full visa document list before you speak to anyone.</p>
+        <div class="card__foot"><a class="tlink tlink--gold" href="costs-and-visa.html">Costs &amp; visa <span class="arr" aria-hidden="true">&rarr;</span></a></div>
+      </article>
+      <article class="card card--navy" data-reveal>
+        <h3>Representing a school?</h3>
+        <p>Partnership enquiries go to a separate desk and get a separate conversation.</p>
+        <div class="card__foot"><a class="tlink tlink--gold" href="partners.html">For schools &amp; agents <span class="arr" aria-hidden="true">&rarr;</span></a></div>
+      </article>
+    </div>
+  </div>
+</section>

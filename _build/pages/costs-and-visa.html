@@ -1,0 +1,350 @@
+
+<section class="phero">
+  <div class="shell phero__inner">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>/</span><span>Costs &amp; visa</span>
+    </nav>
+    <p class="eyebrow eyebrow--light" data-reveal>No vague answers</p>
+    <h1 data-reveal style="--d:80ms">What it costs, and what the consulate will ask you for.</h1>
+    <p class="lead" data-reveal style="--d:160ms">
+      Two things decide whether a plan to study in Greece survives contact with
+      reality: the money, and the paperwork. Both are below, with numbers you can
+      adjust and a document list you can start collecting this week.
+    </p>
+  </div>
+</section>
+
+<!-- ======================================================= CALCULATOR -->
+<section class="section shell">
+  <div class="section-head">
+    <div data-reveal>
+      <p class="eyebrow">Build your estimate</p>
+      <h2>Your year, costed.</h2>
+    </div>
+    <p data-reveal style="--d:120ms">
+      Move the controls. Everything recalculates live. These are indicative figures
+      based on published 2026 institutional fees and current Greek cost-of-living
+      data &mdash; a planning tool, not a quotation.
+    </p>
+  </div>
+
+  <div class="calc" id="calc" data-reveal="scale">
+    <div class="calc__controls">
+
+      <div class="field">
+        <label for="calc-city-label">City</label>
+        <div class="seg" data-calc-seg="city" id="calc-city-label" role="group" aria-label="City">
+          <button type="button" class="is-active" data-val="athens">Athens</button>
+          <button type="button" data-val="thessaloniki">Thessaloniki</button>
+          <button type="button" data-val="crete">Crete</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Housing</label>
+        <div class="seg" data-calc-seg="housing" role="group" aria-label="Housing">
+          <button type="button" class="is-active" data-val="shared">Room in a shared flat</button>
+          <button type="button" data-val="studio">Own studio</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Programme &amp; tuition</label>
+        <div class="seg" data-calc-seg="tuition" role="group" aria-label="Programme">
+          <button type="button" class="is-active" data-val="6750">Bachelor's &middot; &euro;6,750</button>
+          <button type="button" data-val="8350">Master's &middot; &euro;8,350</button>
+          <button type="button" data-val="10320">UNIC UG &middot; &euro;10,320</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="calc-lifestyle">
+          Lifestyle
+          <span class="field__val" id="calc-lifestyle-val">Typical</span>
+        </label>
+        <input type="range" id="calc-lifestyle" min="75" max="130" value="100" step="5"
+               aria-describedby="calc-lifestyle-help">
+        <p class="tiny" id="calc-lifestyle-help" style="margin:10px 0 0">
+          Adjusts food, utilities, transport, phone and personal spending. Rent is set
+          by city and housing type above.
+        </p>
+      </div>
+
+      <div class="placeholder" style="margin-top:4px">
+        <b>Read this before you rely on it</b>
+        Figures are indicative averages. Your actual costs depend on the specific
+        programme, the neighbourhood, the year, and how you live. Confirm tuition with
+        the institution and funds requirements with the Greek consulate in your country.
+      </div>
+    </div>
+
+    <div class="calc__out" aria-live="polite">
+      <p class="eyebrow eyebrow--light" style="margin-bottom:8px">Your estimate</p>
+
+      <div class="calc__row"><span>Accommodation</span><b id="o-rent">&euro;520 /mo</b></div>
+      <div class="calc__row"><span>Everything else to live</span><b id="o-living">&euro;462 /mo</b></div>
+      <div class="calc__row"><span>Monthly total</span><b id="o-monthly">&euro;982</b></div>
+      <div class="calc__row"><span>Tuition</span><b id="o-tuition">&euro;6,750 /yr</b></div>
+
+      <div class="calc__total">
+        <p class="tiny" style="color:#96aabd;margin-bottom:6px">First-year total, tuition + 12 months living</p>
+        <span class="figure" id="o-total">&euro;18,534</span>
+      </div>
+
+      <div style="border-top:1px solid rgba(255,255,255,.14);padding-top:18px;margin-top:6px">
+        <p class="tiny" style="color:#96aabd;margin-bottom:4px">
+          Rough guide for funds-proof planning
+        </p>
+        <b style="font-family:var(--serif);font-size:22px;color:#fff;font-weight:500" id="o-visa">&euro;6,481</b>
+        <p class="tiny" style="color:#7e93a8;margin-top:8px">
+          The consulate sets the required amount annually against Greek living standards.
+          Show more than the minimum, not exactly it. This figure is a planning prompt only
+          &mdash; get the current requirement from your consulate.
+        </p>
+      </div>
+
+      <a class="btn btn--gold btn--block" href="contact.html" style="margin-top:8px">
+        Get a costed plan for your case <span class="arr" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================== COST BREAKDOWN -->
+<section class="section section--paper">
+  <div class="shell">
+    <div class="section-head">
+      <div data-reveal>
+        <p class="eyebrow">Line by line</p>
+        <h2>Where the money actually goes</h2>
+      </div>
+      <p data-reveal style="--d:120ms">
+        Monthly ranges for a student living normally &mdash; not austerely, and not
+        expensively. Athens sits at the top of each range; Thessaloniki, Patras and
+        the island cities sit below it.
+      </p>
+    </div>
+
+    <div class="grid g-3">
+      <article class="card" data-reveal>
+        <span class="card__tag">The variable that matters most</span>
+        <h3>Rent</h3>
+        <p><strong>&euro;300&ndash;&euro;450</strong> for a room in a shared flat in a regional city.<br>
+           <strong>&euro;450&ndash;&euro;700</strong> for a shared flat or small studio in Athens.</p>
+        <p class="tiny">Rent and utilities together are what separate a &euro;700 month from a &euro;1,400 month. Everything else is comparatively stable.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <span class="card__tag">Groceries and eating out</span>
+        <h3>Food</h3>
+        <p><strong>&euro;180&ndash;&euro;280</strong> groceries.<br>
+           <strong>&euro;60&ndash;&euro;150</strong> eating out and coffee.</p>
+        <p class="tiny">Greek supermarkets and local markets are inexpensive by western European standards. The social coffee culture is real and it is a budget line.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <span class="card__tag">Getting around</span>
+        <h3>Transport</h3>
+        <p><strong>&euro;15&ndash;&euro;35</strong> a month for a student pass, after the student discount of up to 50%.</p>
+        <p class="tiny">Athens has metro, bus, tram and suburban rail. Most students in central districts walk more than they ride.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <span class="card__tag">Bills</span>
+        <h3>Utilities</h3>
+        <p><strong>&euro;60&ndash;&euro;130</strong> for electricity, water and heating.</p>
+        <p class="tiny">Winter heating is the spike. Older Athenian apartments can be poorly insulated &mdash; ask about heating type before you sign.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <span class="card__tag">Connectivity</span>
+        <h3>Mobile &amp; internet</h3>
+        <p><strong>&euro;20&ndash;&euro;35</strong> combined.</p>
+        <p class="tiny">Cheap and straightforward. You will need a Greek number for almost every administrative step, so arrange it in week one.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <span class="card__tag">A life, not just a degree</span>
+        <h3>Personal &amp; social</h3>
+        <p><strong>&euro;60&ndash;&euro;150</strong> for books, clothes, going out and travel.</p>
+        <p class="tiny">Budget it deliberately. Students who plan zero social spending are the ones who quietly overspend and then panic in March.</p>
+      </article>
+    </div>
+
+    <div class="grid g-2" style="margin-top:28px">
+      <article class="card card--navy" data-reveal>
+        <span class="card__tag" style="color:var(--gold-light)">Realistic monthly total</span>
+        <h3 style="font-size:30px">&euro;700&ndash;&euro;1,100 regional &middot; &euro;930&ndash;&euro;1,480 Athens</h3>
+        <p>Add tuition on top. These are the ranges published across current Greek student cost-of-living data and they match what students report.</p>
+      </article>
+      <article class="card" data-reveal>
+        <span class="card__tag">Do not forget</span>
+        <h3>The costs nobody quotes</h3>
+        <p>
+          Rental deposit (commonly one to two months), health insurance, residence permit
+          fee, document translation and apostille, flights, and a first-month buffer before
+          any income starts. Budget &euro;1,500&ndash;&euro;2,500 on top of month one.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= VISA -->
+<section class="section section--navy" id="visa">
+  <div class="shell">
+    <div class="section-head">
+      <div data-reveal>
+        <p class="eyebrow eyebrow--light">The national D visa</p>
+        <h2>Paperwork, in the order<br>you should do it.</h2>
+      </div>
+      <p data-reveal style="--d:120ms">
+        Student visa applications are rarely refused on academic grounds. They are
+        refused for incomplete files, weak proof of funds, and documents that were
+        never translated or apostilled. Start early and be pedantic.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <article class="step" data-reveal>
+        <div class="step__dot">01</div>
+        <div>
+          <p class="step__meta">Before anything else</p>
+          <h3>Secure your acceptance letter</h3>
+          <p>
+            Nothing else in this process can begin without a formal offer from the
+            institution. Everything downstream &mdash; funds, insurance, appointment
+            &mdash; references it.
+          </p>
+        </div>
+      </article>
+
+      <article class="step" data-reveal>
+        <div class="step__dot">02</div>
+        <div>
+          <p class="step__meta">Start now &mdash; this one has a lead time</p>
+          <h3>Criminal record certificate, apostilled and translated</h3>
+          <p>
+            Issued by your home authority, legalised with an apostille, then officially
+            translated. In several countries this alone takes four to eight weeks. It is
+            the most common reason a file misses an intake.
+          </p>
+        </div>
+      </article>
+
+      <article class="step" data-reveal>
+        <div class="step__dot">03</div>
+        <div>
+          <p class="step__meta">The stage that decides the outcome</p>
+          <h3>Proof of sufficient funds</h3>
+          <p>
+            The required monthly amount is set annually against Greek living standards,
+            separate from tuition. Acceptable evidence includes personal bank statements,
+            a scholarship award (IKY, Onassis or institutional), or a sponsor letter with
+            full supporting documentation. Present comfortably above the minimum. Do not
+            move a large sum into the account the week before &mdash; consulates read
+            statement history, not just balances.
+          </p>
+        </div>
+      </article>
+
+      <article class="step" data-reveal>
+        <div class="step__dot">04</div>
+        <div>
+          <p class="step__meta">A frequent refusal reason</p>
+          <h3>Health insurance valid in Greece</h3>
+          <p>
+            Must cover hospital and medical treatment for the entire duration of the visa
+            and the subsequent residence permit. Check the wording of the policy against
+            the consulate's requirement, not against what the broker tells you it covers.
+          </p>
+        </div>
+      </article>
+
+      <article class="step" data-reveal>
+        <div class="step__dot">05</div>
+        <div>
+          <p class="step__meta">Assemble and submit</p>
+          <h3>Passport, photos, accommodation, application</h3>
+          <p>
+            Passport valid for the whole study period, photographs to the stated
+            specification, proof of accommodation in Greece, and the completed application
+            lodged at the Greek consulate with jurisdiction over where you live.
+          </p>
+        </div>
+      </article>
+
+      <article class="step" data-reveal>
+        <div class="step__dot">06</div>
+        <div>
+          <p class="step__meta">Allow one to three months</p>
+          <h3>Decision &mdash; then book flights</h3>
+          <p>
+            From a complete application, plan for one to three months to a decision.
+            Do not book non-refundable travel before approval. Every year, students do,
+            and every year some of them lose the money.
+          </p>
+        </div>
+      </article>
+
+      <article class="step" data-reveal>
+        <div class="step__dot">07</div>
+        <div>
+          <p class="step__meta">Your first weeks in Greece</p>
+          <h3>The residence permit</h3>
+          <p>
+            Apply for the <em>&aacute;deia diamon&iacute;s</em> at the local Aliens and
+            Immigration Department soon after arrival, with your passport, D visa,
+            acceptance letter, proof of funds, insurance and accommodation evidence.
+            Then register for AFM (tax number) and AMKA (social security) &mdash; you
+            cannot legally work, and often cannot rent properly, without them.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="grid g-2" style="margin-top:48px">
+      <article class="card card--navy" data-reveal>
+        <h3>Working while you study</h3>
+        <p>
+          Up to 20 hours per week during term time, with a valid residence permit, AFM and
+          AMKA, in formally registered employment. Undeclared work puts both your permit
+          and your wage protection at risk. Full-time work may be possible during official
+          holidays &mdash; confirm with the Migration Office. Migration authorities do
+          monitor academic progress at renewal, so work that visibly delays your degree
+          creates a problem later.
+        </p>
+      </article>
+      <article class="card card--navy" data-reveal>
+        <h3>Renewals and staying on</h3>
+        <p>
+          Residence permits are renewed against continued enrolment and demonstrated
+          academic progress. Greece does not operate a long post-study work route
+          comparable to the UK Graduate Route. Remaining after graduation generally
+          requires a job offer with a corresponding permit, or progression to further
+          study. Build that into your plan in year one, not in your final semester.
+        </p>
+      </article>
+    </div>
+
+    <div style="margin-top:44px" data-reveal>
+      <a class="btn btn--gold" href="support.html">How we handle this with you <span class="arr" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================== SOURCES -->
+<section class="section section--tight shell">
+  <div data-reveal>
+    <h3 style="margin-bottom:16px">Where these figures come from</h3>
+    <p class="tiny" style="max-width:80ch">
+      Tuition: published international fee schedules from Mediterranean College and the
+      University of Nicosia for 2026&ndash;27. Living costs: current published Greek student
+      cost-of-living data. Visa requirements and the 20-hour work allowance: Greek national
+      D visa and residence permit guidance. All figures are indicative and change between
+      intakes. Before you commit money, confirm tuition with the institution and funds
+      requirements with the Greek consulate holding jurisdiction where you live.
+      <a class="tlink" href="contact.html" style="margin-left:6px">Ask us to check a specific figure <span class="arr" aria-hidden="true">&rarr;</span></a>
+    </p>
+  </div>
+</section>
