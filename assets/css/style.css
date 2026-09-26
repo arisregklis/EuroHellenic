@@ -27,11 +27,12 @@
   --gold:        #c9a227;
   --gold-light:  #e4b557;
   --gold-soft:   #f0dfae;
+  --gold-ink:    #8a6a0c; /* gold for TEXT on white/paper — plain gold is 2.4:1 there */
 
   /* Neutrals */
   --ink:         #15202e;
   --ink-soft:    #47596d;
-  --ink-muted:   #6b7d91;
+  --ink-muted:   #5b6d80; /* was #6b7d91: 4.2:1 on white, 3.9:1 on paper — below AA */
   --line:        #dfe4ea;
   --line-warm:   #e6e1d6;
   --paper:       #f8f7f3;
@@ -89,10 +90,16 @@ hr{ border:0; border-top:1px solid var(--line); margin:var(--s-7) 0; }
 
 /* Focus — visible, accessible, on-brand */
 :focus-visible{
-  outline:2px solid var(--gold);
+  /* blue on light surfaces (gold was 2.4:1 against white), gold on dark ones */
+  outline:2px solid var(--blue);
   outline-offset:3px;
   border-radius:2px;
 }
+.hero :focus-visible, .phero :focus-visible, .section--navy :focus-visible,
+.card--navy :focus-visible, .cta :focus-visible, .calc__out :focus-visible,
+.footer :focus-visible, .drawer :focus-visible, .split :focus-visible{ outline-color:var(--gold-light); }
+.cta .form :focus-visible{ outline-color:var(--blue); }
+.btn:focus-visible{ outline-offset:4px; }
 
 /* Skip link */
 .skip{
@@ -171,7 +178,10 @@ p:last-child{ margin-bottom:0; }
 /* 5. BUTTONS =============================================================== */
 .btn{
   --btn-bg:var(--blue); --btn-fg:#fff;
-  position:relative; display:inline-flex; align-items:center; gap:10px;
+  /* inline-block, not inline-flex: when a long label wraps on a phone, the
+     arrow then follows the last word instead of being pushed to the far edge. */
+  position:relative; display:inline-block; text-align:center; line-height:1.45;
+  text-wrap:balance; /* avoids a lone arrow on the second line */
   background:var(--btn-bg); color:var(--btn-fg);
   padding:15px 26px; border:1px solid var(--btn-bg); border-radius:var(--radius);
   font-size:14px; font-weight:600; letter-spacing:.01em; cursor:pointer;
@@ -186,7 +196,7 @@ p:last-child{ margin-bottom:0; }
 .btn:hover{ transform:translateY(-2px); box-shadow:var(--shadow-md); }
 .btn:hover::after{ transform:translateX(0); }
 .btn:active{ transform:translateY(0); }
-.btn .arr{ transition:transform .35s var(--ease); }
+.btn .arr{ display:inline-block; margin-left:8px; transition:transform .35s var(--ease); }
 .btn:hover .arr{ transform:translateX(4px); }
 
 .btn--gold{ --btn-bg:var(--gold); --btn-fg:var(--navy); }
@@ -196,7 +206,8 @@ p:last-child{ margin-bottom:0; }
 .btn--ghost-light{ --btn-bg:transparent; --btn-fg:#fff; border-color:rgba(255,255,255,.35); }
 .btn--ghost-light:hover{ border-color:var(--gold); color:var(--gold); }
 .btn--sm{ padding:11px 18px; font-size:13px; }
-.btn--block{ width:100%; justify-content:center; }
+.btn--block{ display:block; width:100%; }
+.btn:disabled{ cursor:wait; opacity:.7; transform:none; }
 
 /* Text link with animated underline */
 .tlink{
@@ -246,6 +257,7 @@ p:last-child{ margin-bottom:0; }
 .nav__links a{
   position:relative; font-size:13.5px; font-weight:500; color:var(--ink-soft);
   padding:6px 0; transition:color .3s var(--ease);
+  white-space:nowrap; /* a wrapped label ("Costs / & / visa") breaks the header */
 }
 .nav__links a::after{
   content:""; position:absolute; left:0; bottom:0; height:1.5px; width:100%;
@@ -282,10 +294,14 @@ p:last-child{ margin-bottom:0; }
   position:fixed; inset:var(--header-h) 0 0 0; z-index:99;
   background:var(--navy); color:#fff; padding:var(--s-7) var(--gutter);
   transform:translateY(-12px); opacity:0; pointer-events:none;
-  transition:opacity .4s var(--ease), transform .5s var(--ease-out);
-  overflow-y:auto;
+  /* visibility keeps the closed drawer's links out of the tab order and away
+     from screen readers; it flips only after the fade-out has finished. */
+  visibility:hidden;
+  transition:opacity .4s var(--ease), transform .5s var(--ease-out), visibility 0s linear .5s, top .4s var(--ease);
+  overflow-y:auto; overscroll-behavior:contain;
 }
-.drawer.is-open{ opacity:1; transform:none; pointer-events:auto; }
+.drawer.is-open{ opacity:1; transform:none; pointer-events:auto; visibility:visible; transition-delay:0s; }
+.header.is-stuck ~ .drawer{ top:68px; } /* match the shrunk header, no gap */
 .drawer ul{ list-style:none; display:grid; gap:2px; }
 .drawer a{
   display:block; padding:16px 0; font-family:var(--serif); font-size:27px;
@@ -294,6 +310,7 @@ p:last-child{ margin-bottom:0; }
 }
 .drawer.is-open a{ animation:drawerIn .55s var(--ease-out) forwards; }
 .drawer a:hover{ color:var(--gold); }
+.drawer li a[aria-current="page"]{ color:var(--gold-light); } /* desktop nav marks it; the drawer did not */
 .drawer .btn{ margin-top:var(--s-6); }
 @keyframes drawerIn{ to{ opacity:1; transform:none; } }
 
@@ -336,11 +353,12 @@ p:last-child{ margin-bottom:0; }
 .hero__visual{ position:relative; height:clamp(400px, 52vw, 540px); }
 .panels{ display:grid; grid-template-columns:1fr 1fr; gap:8px; height:100%; }
 .panel{
+  --r:170px; /* radius of the rounded outer edge */
   position:relative; overflow:hidden; margin:0;
   background:linear-gradient(160deg,var(--navy-600),var(--navy)); /* fallback if image fails */
 }
-.panel:first-child{ border-radius:170px 8px 8px 170px; }
-.panel:last-child{  border-radius:8px 170px 170px 8px; }
+.panel:first-child{ border-radius:var(--r) 8px 8px var(--r); }
+.panel:last-child{  border-radius:8px var(--r) var(--r) 8px; }
 .panel img{
   width:100%; height:100%; object-fit:cover;
   transform:scale(1.06); transition:transform 1.4s var(--ease-out);
@@ -355,6 +373,10 @@ p:last-child{ margin-bottom:0; }
   font-size:10px; font-weight:700; letter-spacing:.16em; color:#fff; text-transform:uppercase;
 }
 .panel figcaption b{ display:block; color:var(--gold-light); margin-bottom:5px; }
+/* Keep captions clear of the rounded outer corner, which otherwise clips
+   the first letters ("…ECE", "'OURNEY") at every viewport width. */
+.panel:first-child figcaption{ left:calc(var(--r) * .55); right:16px; }
+.panel:last-child figcaption{  left:16px; right:calc(var(--r) * .55); }
 .crest{
   position:absolute; z-index:3; top:50%; left:50%; transform:translate(-50%,-50%);
   width:108px; height:108px; border-radius:50%;
@@ -382,7 +404,7 @@ p:last-child{ margin-bottom:0; }
 .pillars article:hover{ background:var(--paper); }
 .pillars article:hover::before{ transform:scaleX(1); }
 .pillars .num{
-  font-family:var(--serif); font-size:15px; font-weight:600; color:var(--gold);
+  font-family:var(--serif); font-size:15px; font-weight:600; color:var(--gold-ink);
   letter-spacing:.1em; display:block; margin-bottom:var(--s-4);
 }
 .pillars h3{ color:var(--navy); margin-bottom:var(--s-3); }
@@ -405,6 +427,8 @@ p:last-child{ margin-bottom:0; }
 .card--paper{ background:var(--paper); border-color:var(--line-warm); }
 .card--navy{ background:var(--navy-700); border-color:rgba(255,255,255,.12); color:#fff; }
 .card--navy h3{ color:#fff; } .card--navy p{ color:#b6c6d7; }
+.card--navy .figure{ color:var(--gold); }      /* was navy on navy — invisible */
+.card--navy .card__tag{ color:var(--gold-light); }
 .card--link:hover .tlink::after{ transform:scaleX(1); transform-origin:left; }
 
 /* Icon chip */
@@ -534,7 +558,8 @@ p:last-child{ margin-bottom:0; }
 .section--navy .step h3{ color:#fff; }
 .step p{ font-size:14px; color:var(--ink-soft); margin:0; }
 .section--navy .step p{ color:#b6c6d7; }
-.step__meta{ font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.step__meta{ font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-ink); margin-bottom:6px; }
+.section--navy .step__meta{ color:var(--gold); }
 
 /* --- Marquee --- */
 .marquee{ overflow:hidden; border-block:1px solid var(--line); padding-block:22px; background:var(--white); }
@@ -614,8 +639,12 @@ input[type=range]::-moz-range-thumb{
   content:""; position:absolute; right:-40px; bottom:-140px; width:300px; height:300px; border-radius:50%;
   border:1px solid rgba(201,162,39,.24);
 }
+/* Content sits above the decorative rings, which otherwise draw across the
+   form and the buttons. */
+.cta > *{ position:relative; z-index:1; }
 .cta h2{ color:#fff; margin-bottom:var(--s-4); }
 .cta p{ color:#c8dceb; }
+.cta .form p{ color:var(--ink-muted); } /* form note was pale blue on white */
 .cta ul{ list-style:none; display:grid; gap:12px; margin-bottom:var(--s-5); }
 .cta li{ display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#dce8f2; }
 .cta li svg{ color:var(--gold-light); flex:none; margin-top:3px; }
@@ -632,6 +661,7 @@ input[type=range]::-moz-range-thumb{
 .crumbs{ display:flex; gap:10px; align-items:center; font-size:12px; color:#7e93a8; margin-bottom:var(--s-5); }
 .crumbs a:hover{ color:var(--gold-light); }
 .crumbs span{ color:#4d647c; }
+.crumbs span:last-child{ color:#b6c6d7; } /* current page: was ~2.5:1 on navy */
 
 /* 9. FORMS ================================================================= */
 .form{ background:var(--white); padding:clamp(26px,3.2vw,40px); display:grid; gap:var(--s-4); color:var(--ink); }
@@ -700,6 +730,19 @@ input[type=range]::-moz-range-thumb{
 }
 
 /* 12. RESPONSIVE =========================================================== */
+/* Header: eight links + brand + CTA need ~1230px at full size. Tighten the
+   spacing on small laptops, and hand over to the drawer below 1180px —
+   otherwise the labels wrap and the CTA is pushed off-screen (at 1024px it
+   ended 40px past the viewport edge). */
+@media (max-width:1320px){
+  .nav{ gap:16px; }
+  .nav__links{ gap:18px; }
+  .nav__links a{ font-size:13px; }
+}
+@media (max-width:1180px){
+  .nav__links, .nav__cta{ display:none; }
+  .burger{ display:flex; }
+}
 @media (max-width:1080px){
   .footer__grid{ grid-template-columns:1fr 1fr; }
   .tiles{ grid-template-columns:1fr 1fr; }
@@ -707,9 +750,7 @@ input[type=range]::-moz-range-thumb{
 }
 @media (max-width:900px){
   :root{ --header-h:70px; }
-  .nav__links, .nav__cta{ display:none; }
-  .burger{ display:flex; }
-  .hero__grid, .section-head, .split, .calc, .cta, .g-split{ grid-template-columns:1fr; }
+  .hero__grid, .section-head, .split, .calc, .cta, .g-split, .g-2--stack-md{ grid-template-columns:1fr; }
   .hero__visual{ height:clamp(300px,56vw,420px); }
   .g-3,.g-4{ grid-template-columns:1fr 1fr; }
   .pillars{ grid-template-columns:1fr; }
@@ -722,13 +763,25 @@ input[type=range]::-moz-range-thumb{
   .g-2,.g-3,.g-4,.form__row,.tiles,.stats{ grid-template-columns:1fr; }
   .tiles .tile:first-child{ grid-column:auto; }
   .tile{ height:320px; border-radius:6px !important; }
-  .panel:first-child{ border-radius:110px 6px 6px 110px; }
-  .panel:last-child{ border-radius:6px 110px 110px 6px; }
+  .panel{ --r:110px; }
+  .panel:first-child{ border-radius:var(--r) 6px 6px var(--r); }
+  .panel:last-child{ border-radius:6px var(--r) var(--r) 6px; }
   .crest{ width:80px; height:80px; box-shadow:0 0 0 5px var(--navy); }
   .hero__trust{ gap:12px; }
+  /* CTA band + form padding stacked to 72px per side, leaving ~210px inputs */
+  .cta{ padding:32px 20px; }
+  .form{ padding:24px 20px; }
   .footer__grid{ grid-template-columns:1fr; }
   .footer__bar{ flex-direction:column; align-items:flex-start; }
   .step{ grid-template-columns:38px 1fr; gap:var(--s-4); }
   .step__dot{ width:37px; height:37px; font-size:13px; }
   .timeline::before,.timeline__fill{ left:18px; }
+}
+@media (max-width:370px){
+  /* 320px phones: the brand lockup pushed the burger 3px off-screen */
+  .nav{ gap:var(--s-3); }
+  .brand{ gap:9px; }
+  .brand__mark{ width:36px; height:36px; }
+  .brand__name{ letter-spacing:.1em; }
+  .brand__name small{ letter-spacing:.12em; }
 }
