@@ -1,6 +1,6 @@
 # EuroHellenic — Education & Student Services
 
-A twelve-page static marketing site for an independent education advisory service
+A seven-page static marketing site for an independent education advisory service
 placing international students into English-taught degree programmes in Greece.
 
 No framework. No build step required to run it. No npm install. Upload the folder
@@ -36,9 +36,8 @@ Before you deploy, do these three things:
 ## 3. How the files fit together
 
 ```
-index.html  why-greece.html  programmes.html  institutions.html
-costs-and-visa.html  student-life.html  support.html  about.html
-partners.html  faq.html  contact.html  404.html
+index.html  programmes.html  costs-and-visa.html  about.html
+faq.html  contact.html  404.html
 sitemap.xml  robots.txt
 
 assets/
@@ -55,11 +54,11 @@ _build/                OPTIONAL tooling, do not upload
 
 ### The `_build` folder — read this before editing
 
-The twelve `.html` files in the root are **complete and self-contained**. You can
+The seven `.html` files in the root are **complete and self-contained**. You can
 edit them directly and they will work.
 
-But the header, navigation and footer are identical across all twelve. Editing them
-by hand means changing the same markup twelve times and getting it wrong once.
+But the header, navigation and footer are identical across all seven. Editing them
+by hand means changing the same markup seven times and getting it wrong once.
 
 So the chrome lives in one place, `_build/build.py`, and the unique content of each
 page lives in `_build/pages/<name>.html`. Running the builder stitches them together:
@@ -109,29 +108,33 @@ lead-generation site loses its first month of enquiries.
 
 ---
 
-## 5. Images — the one thing to fix properly
+## 5. Images and photo credits
 
-All artwork is original SVG, hand-built for this site and stored in `assets/img/`.
-It is sharp at any size, loads instantly, costs nothing in bandwidth, and — unlike
-hotlinked stock photography — **cannot break**.
+The site uses real photographs, downloaded (not hotlinked) into
+`assets/img/photos/` and compressed to roughly 90–270 KB each. All come from
+[Unsplash](https://unsplash.com) and are used under the
+[Unsplash License](https://unsplash.com/license) (free for commercial use,
+attribution not required but given here as a courtesy).
 
-The original draft of this site hotlinked Unsplash URLs, including two
-`download?force=true` links. Those are not stable CDN addresses: they rate-limit,
-change, and eventually 404, at which point your hero section becomes three grey
-boxes. That was removed deliberately.
+| File | Used on | Photographer | Source |
+|---|---|---|---|
+| `athens-acropolis-dusk.jpg` | Home hero | Jeffrey Zhang | https://unsplash.com/photos/CBQHu7PJ2q0 |
+| `athens-acropolis-night.jpg` | Contact hero | Jeffrey Zhang | https://unsplash.com/photos/IeSXZmMxE-A |
+| `athens-monastiraki.jpg` | Home, cities | Andrea Leopardi | https://unsplash.com/photos/a-lN07O_ZNI |
+| `athens-street.jpg` | Home, photo band | Markus Winkler | https://unsplash.com/photos/IvCKp7SHhxI |
+| `athens-cafe-street.jpg` | About hero | Daria Nepriakhina | https://unsplash.com/photos/GqurqYbj7aU |
+| `thessaloniki-white-tower.jpg` | Home, cities; FAQ hero | Josef Maxson | https://unsplash.com/photos/LMThkOqsix0 |
+| `chania-lighthouse.jpg` | Home, cities | Frederik Holmgren | https://unsplash.com/photos/6fidxJQO9t4 |
+| `lecture-hall.jpg` | Programmes hero | Vitaly Gariev | https://unsplash.com/photos/RDBb3JUdOnc |
+| `library-reading-room.jpg` | Home, advisor section | Zoshua Colah | https://unsplash.com/photos/Ma7aOy5mMp0 |
+| `passport-desk.jpg` | Costs & visa hero | Alex Robert | https://unsplash.com/photos/91OAqhtBhVA |
+| `notebook-desk.jpg` | About, background section | Clay Banks | https://unsplash.com/photos/n9AaeihA9HI |
 
-When you are ready to add real photography:
+Still to do before launch: replace `notebook-desk.jpg` on `about.html` with a real
+photograph of the founder. A named face does more for trust than any stock image.
 
-1. Buy or license the images properly. Download them; do not hotlink.
-2. Save them into `assets/img/` as `.webp` (with a `.jpg` fallback if you need old-browser support).
-3. Swap the `src` on the relevant `<img>` tags. Every image already has a
-   width, height and descriptive `alt` attribute — keep them, and update the `alt`
-   text to describe the new photograph.
-4. Keep each file under about 250 KB. Squoosh.app does this in a browser.
-
-The places real photography would earn its keep, in priority order: the two hero
-panels on `index.html`, the three `.tile` images on `index.html` and
-`student-life.html`, and a genuine photograph of the founder on `about.html`.
+The old illustrated SVG scenes (`assets/img/scene-*.svg`) and `crest.svg` are no
+longer used by any page and can be deleted.
 
 ---
 
@@ -152,11 +155,11 @@ resolved before launch. They are deliberately visible so they cannot be forgotte
       attributable** quotes or the whole section deleted. Do not invent them.
 - [ ] Every tuition figure re-verified against the institution's current published fees
 - [ ] Confirm whether formal referral agreements exist with each listed institution,
-      and adjust the wording on `institutions.html` accordingly
+      and adjust the wording in the institutions section of `programmes.html` accordingly
 
 **Strongly recommended**
 
-- [ ] Tutoring prices published on `support.html` — vague pricing costs more
+- [ ] Tutoring prices published in the support section of `about.html` — vague pricing costs more
       enquiries than high pricing does
 - [ ] Privacy policy page (you are collecting personal data from EU and non-EU
       residents; GDPR applies to you the moment the form works)
@@ -242,7 +245,7 @@ elements that never triggered. It then exercises the calculator, the programme
 filter, the accordion and the mobile drawer, and saves screenshots to
 `_build/shots/`. Exits non-zero if anything fails, so it drops straight into CI.
 
-Last run: **all twelve pages clean, no errors, no warnings.**
+Last run: **all seven pages clean, no errors, no warnings.**
 
 ---
 

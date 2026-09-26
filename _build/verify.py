@@ -9,8 +9,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SHOTS = ROOT / "_build" / "shots"
 SHOTS.mkdir(parents=True, exist_ok=True)
 
-PAGES = ["index", "why-greece", "programmes", "institutions", "costs-and-visa",
-         "student-life", "support", "about", "partners", "faq", "contact"]
+PAGES = ["index", "programmes", "costs-and-visa",
+         "about", "faq", "contact", "404"]
 
 report = {"errors": [], "warnings": [], "ok": []}
 
