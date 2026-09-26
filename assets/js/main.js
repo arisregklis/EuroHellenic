@@ -43,7 +43,19 @@
         });
       });
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && drawer.classList.contains('is-open')) burger.click();
+        if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+          burger.click();
+          burger.focus();
+        }
+      });
+      // Widening the window past the burger breakpoint (or rotating a tablet)
+      // must not leave the page locked behind an open drawer.
+      window.addEventListener('resize', function () {
+        if (drawer.classList.contains('is-open') && getComputedStyle(burger).display === 'none') {
+          burger.setAttribute('aria-expanded', 'false');
+          drawer.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
       });
     }
 
