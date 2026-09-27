@@ -1,6 +1,7 @@
 
-<section class="phero">
-  <div class="shell phero__inner">
+<section class="phero phero--photo">
+  <div class="shell">
+  <div class="phero__inner">
     <nav class="crumbs" aria-label="Breadcrumb">
       <a href="index.html">Home</a><span>/</span><span>About</span>
     </nav>
@@ -12,32 +13,23 @@
       that is closed by a person, not a portal.
     </p>
   </div>
+  <figure class="phero__img">
+    <img src="assets/img/photos/athens-cafe-street.jpg" alt="Cafe tables on a quiet tree-lined street in Athens" width="1100" height="733">
+  </figure>
+  </div>
 </section>
 
 <section class="section shell">
   <div class="grid g-2" style="gap:clamp(32px,6vw,80px);align-items:center">
-    <div data-reveal="left" style="text-align:center">
-      <div style="width:min(300px,80%);margin:0 auto;position:relative">
-        <svg viewBox="0 0 300 300" style="width:100%;height:auto" role="img" aria-label="EuroHellenic seal">
-          <circle cx="150" cy="150" r="146" fill="#071d39"/>
-          <circle cx="150" cy="150" r="138" fill="none" stroke="#c9a227" stroke-width="1"/>
-          <circle cx="150" cy="150" r="128" fill="none" stroke="#c9a227" stroke-width=".6" opacity=".5"
-                  stroke-dasharray="2 6"/>
-          <g transform="translate(150 150) scale(2.2) translate(-32 -32)">
-            <path d="M24 22h16v2.6H24zM25.6 25.6h12.8v1.6H25.6z" fill="#e4b557"/>
-            <path d="M27.4 27.8h1.9v12h-1.9zM31 27.8h1.9v12H31zM34.6 27.8h1.9v12h-1.9z" fill="#f0dfae"/>
-            <path d="M24.2 40h15.6v2.4H24.2zM22.6 42.8h18.8v2.2H22.6z" fill="#e4b557"/>
-          </g>
-          <text x="150" y="222" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif"
-                font-size="20" fill="#c9a227" letter-spacing="4" textLength="184" lengthAdjust="spacingAndGlyphs">EUROHELLENIC</text>
-          <text x="150" y="242" text-anchor="middle" font-family="Inter, sans-serif"
-                font-size="7.5" fill="#7e93a8" letter-spacing="2" textLength="160" lengthAdjust="spacingAndGlyphs">EDUCATION &amp; STUDENT SERVICES</text>
-        </svg>
-      </div>
-    </div>
+    <figure class="advisor__photo" data-reveal>
+      <!-- Replace with the founder's own photograph before launch (see handoff note). -->
+      <img src="assets/img/photos/notebook-desk.jpg"
+           alt="An open notebook and pen on a wooden desk, ready for a planning session"
+           width="1400" height="933" loading="lazy">
+    </figure>
 
     <div data-reveal="right">
-      <p class="eyebrow">Experience that is actually relevant</p>
+      <p class="eyebrow">Background</p>
       <h2>Guidance from inside the classroom.</h2>
       <p class="lead" style="margin-top:20px">
         EuroHellenic is led by an experienced Head of English Department and Academic
@@ -132,6 +124,44 @@
         </p>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ========================================================== SUPPORT -->
+<section class="section shell" id="support">
+  <div class="section-head">
+    <div data-reveal>
+      <p class="eyebrow">What we do, and how we are paid</p>
+      <h2>More than an application.</h2>
+    </div>
+    <p data-reveal style="--d:120ms">
+      Enrolment is the middle of the process, not the end. The visa, the housing and the
+      first month are where students actually struggle &mdash; and where we keep answering.
+    </p>
+  </div>
+
+  <div class="grid g-3">
+    <article class="card" data-reveal>
+      <span class="card__tag">Enquiry to arrival</span>
+      <h3>Complete guidance</h3>
+      <p>An honest assessment and shortlist, application and personal statement, the visa file (funds, insurance, apostilles, translations), accommodation advice and a first-fortnight arrival checklist.</p>
+    </article>
+    <article class="card" data-reveal>
+      <span class="card__tag">Taught by us</span>
+      <h3>Tutoring for the gap</h3>
+      <p>Most students turned away are half an IELTS band or one prerequisite short. We teach IELTS, IGCSE &amp; A Levels, maths &amp; physics, and academic writing &mdash; not subcontracted.</p>
+    </article>
+    <article class="card card--navy" data-reveal>
+      <span class="card__tag" style="color:var(--gold-light)">Stated up front</span>
+      <h3>How we are paid</h3>
+      <p>The first conversation, assessment and shortlist are free. Any institution commission is disclosed before you apply. Tutoring is quoted separately and never a condition of a placement.</p>
+    </article>
+  </div>
+
+  <div class="placeholder" style="margin-top:36px;max-width:900px" data-reveal>
+    <b>Handoff note</b>
+    Add tutoring pricing here before launch &mdash; hourly rate, packages, and whether sessions
+    are online, in person or both. Vague pricing costs more enquiries than a high price does.
   </div>
 </section>
 
