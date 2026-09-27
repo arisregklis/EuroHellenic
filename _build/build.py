@@ -45,6 +45,8 @@ PAGES = [
      "EuroHellenic is a personal education advisory service led by an experienced Head of English Department and Academic & Careers Advisor, offering application, visa and arrival support plus IELTS and A Level tutoring."),
     ("faq",            "FAQ",            "Frequently Asked Questions — Studying in Greece",
      "Straight answers on recognition of degrees, English requirements, visa refusals, working while studying, staying in Europe after graduation and what our service costs."),
+    ("greek-history",  "Greek history",  "Greek History for International Students — From Knossos to the EU",
+     "A clear, accurate timeline of Greek history for students planning to study in Greece: Minoans and Mycenaeans, classical Athens, Alexander, Byzantium, independence in 1821 and the modern EU state — plus the sites you can visit."),
     ("contact",        "Contact",        "Contact an Advisor — Start Your Application",
      "Tell us what you want to study and an advisor will reply within two working days with the routes that realistically fit your profile and budget."),
     ("404",            "Not found",      "Page Not Found",
@@ -55,7 +57,14 @@ PAGES = [
 NO_INDEX = {"404"}
 
 # Which pages appear in the primary nav (FAQ and Contact live elsewhere)
-PRIMARY_NAV = ["programmes", "costs-and-visa", "about"]
+PRIMARY_NAV = ["programmes", "costs-and-visa", "about", "greek-history"]
+
+# Scripts loaded on every page, and extra scripts for individual pages.
+# athena.js is the "Ask Athena" study-match assistant (floating button + chat).
+SHARED_SCRIPTS = ["assets/js/main.js", "assets/js/athena.js"]
+PAGE_SCRIPTS = {
+    "contact": ["assets/js/contact-prefill.js"],   # reads Athena's ?query params
+}
 
 TITLES = {slug: (label, title, desc) for slug, label, title, desc in PAGES}
 
@@ -168,6 +177,7 @@ FOOTER = """
           <li><a href="programmes.html#institutions">Institutions</a></li>
           <li><a href="costs-and-visa.html">Costs &amp; visa</a></li>
           <li><a href="costs-and-visa.html#living">Living in Greece</a></li>
+          <li><a href="greek-history.html">Greek history</a></li>
         </ul>
       </div>
 
@@ -201,7 +211,7 @@ FOOTER = """
   </div>
 </footer>
 
-<script src="assets/js/main.js" defer></script>
+{scripts}
 </body>
 </html>
 """
@@ -220,6 +230,12 @@ def build_nav(current):
         cur = ' aria-current="page"' if slug == current else ""
         drawer.append(f'    <li><a href="{slug}.html"{cur}>{label}</a></li>')
     return "\n".join(primary), "\n".join(drawer)
+
+
+def script_tags(slug):
+    """<script> tags for the shared scripts plus any page-specific ones."""
+    srcs = SHARED_SCRIPTS + PAGE_SCRIPTS.get(slug, [])
+    return "\n".join(f'<script src="{src}" defer></script>' for src in srcs)
 
 
 def extra_schema(slug):
@@ -264,7 +280,8 @@ def main():
                         extra_schema=extra_schema(slug))
             + HEADER.format(site=SITE_NAME, nav_items=primary, drawer_items=drawer)
             + body.rstrip()
-            + FOOTER.format(site=SITE_NAME, email=EMAIL_STUDENTS, partners=EMAIL_PARTNERS)
+            + FOOTER.format(site=SITE_NAME, email=EMAIL_STUDENTS, partners=EMAIL_PARTNERS,
+                            scripts=script_tags(slug))
         )
 
         out = ROOT / f"{slug}.html"

@@ -10,7 +10,7 @@ SHOTS = ROOT / "_build" / "shots"
 SHOTS.mkdir(parents=True, exist_ok=True)
 
 PAGES = ["index", "programmes", "costs-and-visa",
-         "about", "faq", "contact", "404"]
+         "about", "faq", "greek-history", "contact", "404"]
 
 report = {"errors": [], "warnings": [], "ok": []}
 
@@ -136,6 +136,37 @@ with sync_playwright() as p:
     else:
         report["ok"].append("mobile drawer opens")
         page.screenshot(path=str(SHOTS / "drawer-mobile.png"))
+    page.close()
+
+    # Athena: walk the questionnaire, check the summary and the contact prefill
+    page = browser.new_page(viewport={"width": 1280, "height": 900})
+    errs = []
+    page.on("pageerror", lambda e: errs.append(str(e)))
+    page.emulate_media(reduced_motion="reduce")      # no typing delays
+    page.goto((ROOT / "index.html").as_uri(), wait_until="networkidle")
+    page.click(".athena-fab")
+    page.fill("#athena-input", "Test")
+    page.press("#athena-input", "Enter")
+    for chip in ["Bachelor’s degree", "Computing & AI", "Thessaloniki", "Under €7,000",
+                 "€12,000–€18,000", "IELTS 5.5", "A UK degree", "Autumn (Sep/Oct)"]:
+        page.get_by_role("button", name=chip, exact=True).click()
+    page.get_by_role("button", name="Skip this one").click()
+    page.wait_for_selector(".athena-summary", timeout=5000)
+    recs = page.locator(".athena-rec h4").all_inner_texts()
+    if not recs:
+        report["errors"].append("athena: summary has no recommendations")
+    else:
+        report["ok"].append("athena: " + " | ".join(recs))
+    href = page.get_attribute(".athena-summary .btn--gold", "href")
+    page.goto((ROOT / href.split("?")[0]).as_uri() + "?" + href.split("?", 1)[1], wait_until="networkidle")
+    lvl = page.eval_on_selector(".section form[data-enquiry] select[name=level]", "e => e.value")
+    eng = page.eval_on_selector(".section form[data-enquiry] select[name=english]", "e => e.value")
+    if lvl != "Undergraduate" or eng != "IELTS 5.5":
+        report["errors"].append(f"contact prefill failed: level={lvl} english={eng}")
+    else:
+        report["ok"].append("contact prefill from Athena")
+    for e in errs:
+        report["errors"].append(f"athena JS error: {e}")
     page.close()
 
     browser.close()

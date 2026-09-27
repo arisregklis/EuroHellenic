@@ -786,3 +786,255 @@ input[type=range]::-moz-range-thumb{
   background:url("../img/meander.svg") no-repeat center / 12px 12px;
 }
 .section--navy .section-head .eyebrow::before{ background-image:url("../img/meander-light.svg"); }
+
+/* 15. ATHENA — floating study-match assistant (assets/js/athena.js) ========
+   A round launcher bottom-right on every page and a messenger-style panel.
+   Built from the same tokens; bubbles and chips are the only rounded things
+   on the site, because that is what a chat is expected to look like.
+   ========================================================================== */
+.sr-only{
+  position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+html.athena-lock, html.athena-lock body{ overflow:hidden; }
+
+.athena-fab{
+  position:fixed; z-index:98;
+  right:max(20px, env(safe-area-inset-right)); bottom:max(20px, env(safe-area-inset-bottom));
+  display:flex; align-items:center; gap:10px;
+  padding:5px 20px 5px 5px; border:1px solid rgba(255,255,255,.18); border-radius:999px;
+  background:var(--dark); color:#fff; cursor:pointer;
+  font-family:var(--sans); font-size:15px; font-weight:500; line-height:1;
+  box-shadow:0 10px 30px rgba(11,42,74,.28), 0 2px 6px rgba(11,42,74,.18);
+  transition:transform .25s var(--ease-out), background .2s var(--ease);
+}
+.athena-fab:hover{ background:var(--dark-2); transform:translateY(-2px); }
+.athena-fab:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.athena-fab__owl{ width:50px; height:50px; flex:none; border-radius:50%; display:block; }
+.athena-fab__owl svg, .athena__avatar svg, .athena-msg__avatar svg{ width:100%; height:100%; display:block; }
+.athena-fab__label{ white-space:nowrap; letter-spacing:.01em; }
+.athena-fab__dot{
+  position:absolute; top:4px; left:42px; width:11px; height:11px; border-radius:50%;
+  background:var(--accent-light); border:2px solid var(--dark); display:none;
+}
+.athena-fab.has-progress .athena-fab__dot{ display:block; }
+.athena-fab.is-hidden-fab{ opacity:0; pointer-events:none; visibility:hidden; }
+.athena-fab .athena-owl{ transform-origin:50% 60%; }
+.athena-fab:hover .athena-owl{ animation:athena-tilt .7s var(--ease-out); }
+@keyframes athena-tilt{ 0%,100%{ transform:rotate(0); } 35%{ transform:rotate(-8deg); } 70%{ transform:rotate(5deg); } }
+
+.athena{
+  position:fixed; z-index:130;
+  right:max(20px, env(safe-area-inset-right)); bottom:max(20px, env(safe-area-inset-bottom));
+  width:min(410px, calc(100vw - 32px));
+  height:min(660px, calc(100vh - 40px)); height:min(660px, calc(100dvh - 40px));
+  display:flex; flex-direction:column; overflow:hidden;
+  background:var(--bg); color:var(--ink); border:1px solid var(--ink); border-radius:14px;
+  box-shadow:0 24px 60px rgba(11,42,74,.28), 0 4px 14px rgba(11,42,74,.14);
+  animation:athena-in .32s var(--ease-out);
+}
+.athena[hidden]{ display:none; }
+@keyframes athena-in{ from{ opacity:0; transform:translateY(14px) scale(.98); } to{ opacity:1; transform:none; } }
+
+.athena__head{
+  position:relative; flex:none; display:flex; align-items:center; gap:12px;
+  padding:14px 10px 20px 16px; background:var(--dark); color:#fff;
+}
+.athena__head::after{
+  content:""; position:absolute; left:0; right:0; bottom:4px; height:10px; opacity:.5;
+  background:url("../img/meander-light.svg") repeat-x left center / 10px 10px;
+}
+.athena__avatar{ width:44px; height:44px; flex:none; border-radius:50%; box-shadow:0 0 0 2px rgba(140,196,242,.35); }
+.athena__who{ flex:1 1 auto; min-width:0; }
+.athena__title{ font-family:var(--serif); font-size:19px; line-height:1.2; color:#fff; letter-spacing:-.005em; }
+.athena__sub{ margin:3px 0 0; font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--on-dark-soft); }
+.athena__icon{
+  flex:none; width:40px; height:40px; display:grid; place-items:center; border:0; border-radius:50%;
+  background:transparent; color:var(--on-dark); cursor:pointer; transition:background .2s var(--ease);
+}
+.athena__icon svg{ width:20px; height:20px; }
+.athena__icon:hover{ background:rgba(255,255,255,.12); }
+.athena__icon:focus-visible{ outline:2px solid var(--accent-light); outline-offset:0; }
+
+.athena__log{
+  flex:1 1 auto; overflow-y:auto; overscroll-behavior:contain;
+  padding:18px 14px 8px; display:flex; flex-direction:column; gap:10px;
+  background:var(--white);
+}
+.athena__log:focus{ outline:none; }
+.athena__log:focus-visible{ outline:2px solid var(--accent); outline-offset:-2px; }
+
+.athena-msg{ display:flex; align-items:flex-end; gap:8px; max-width:100%; flex:none; }
+.athena-msg.is-new{ animation:athena-msg-in .28s var(--ease-out); }
+@keyframes athena-msg-in{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:none; } }
+.athena-msg__avatar{ width:28px; height:28px; flex:none; border-radius:50%; }
+.athena-bubble{
+  max-width:82%; padding:10px 14px; font-size:15px; line-height:1.5; border-radius:16px;
+  overflow-wrap:anywhere;
+}
+.athena-msg--bot .athena-bubble{ background:var(--paper); color:var(--ink); border-bottom-left-radius:4px; }
+.athena-msg--user{ justify-content:flex-end; }
+.athena-msg--user .athena-bubble{ background:var(--accent); color:#fff; border-bottom-right-radius:4px; }
+.athena-bubble em{ color:var(--ink-muted); font-style:italic; }
+.athena-bubble strong{ font-weight:600; }
+
+.athena-typing .athena-bubble{ display:flex; gap:5px; padding:14px 16px; }
+.athena-typing i{
+  width:7px; height:7px; border-radius:50%; background:var(--ink-muted); display:block; opacity:.35;
+  animation:athena-dot 1s infinite var(--ease);
+}
+.athena-typing i:nth-child(2){ animation-delay:.15s; }
+.athena-typing i:nth-child(3){ animation-delay:.3s; }
+@keyframes athena-dot{ 0%,100%{ opacity:.3; transform:none; } 40%{ opacity:1; transform:translateY(-3px); } }
+
+.athena__controls{ flex:none; background:var(--white); padding:0 14px; max-height:42%; overflow-y:auto; }
+.athena__controls:not(:empty){ padding:6px 14px 12px; }
+.athena-chips{ display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
+.athena-chips + .athena-chips{ margin-top:8px; }
+.athena-chip{
+  border:1px solid var(--accent); background:var(--white); color:var(--accent);
+  padding:8px 14px; border-radius:999px; font-size:14px; font-weight:500; line-height:1.3; cursor:pointer;
+  transition:background .15s var(--ease), color .15s var(--ease);
+}
+.athena-chip:hover{ background:var(--accent); color:#fff; }
+.athena-chip:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+.athena-chip--quiet{ border-color:var(--line); color:var(--ink-soft); }
+.athena-chip--quiet:hover{ background:var(--paper); color:var(--ink); }
+
+.athena__composer{
+  flex:none; display:flex; gap:8px; align-items:center; padding:10px 12px;
+  border-top:1px solid var(--line); background:var(--bg);
+}
+.athena__composer input{
+  flex:1 1 auto; min-width:0; padding:11px 14px; border:1px solid #b6c3d1; border-radius:999px;
+  font:inherit; font-size:16px; color:var(--ink); background:var(--white);
+}
+.athena__composer input:focus{ outline:none; border-color:var(--ink); box-shadow:0 0 0 1px var(--ink); }
+.athena__composer input:disabled{ background:transparent; border-color:var(--line); color:var(--ink-muted); }
+.athena__composer input::placeholder{ color:var(--ink-muted); }
+.athena__send{
+  flex:none; width:44px; height:44px; border:0; border-radius:50%; display:grid; place-items:center;
+  background:var(--accent); color:#fff; cursor:pointer; transition:background .2s var(--ease), opacity .2s var(--ease);
+}
+.athena__send svg{ width:20px; height:20px; }
+.athena__send:hover{ background:var(--accent-dark); }
+.athena__send:disabled{ opacity:.35; cursor:default; background:var(--ink-muted); }
+.athena__foot{ flex:none; margin:0; padding:0 14px 10px; background:var(--bg); font-size:11.5px; line-height:1.4; color:var(--ink-muted); }
+
+/* Summary card */
+.athena-msg--summary{ align-items:flex-start; }
+.athena-msg--summary .athena-msg__avatar{ margin-top:2px; }
+.athena-summary{
+  flex:1 1 auto; min-width:0; background:var(--bg); border:1px solid var(--line); border-top:3px solid var(--accent);
+  border-radius:4px 16px 16px 16px; padding:16px 16px 14px;
+}
+.athena-summary__eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin:0 0 4px; }
+.athena-summary__title{ font-size:22px; margin:0 0 10px; }
+.athena-recs{ list-style:none; margin:0; padding:0; counter-reset:rec; border-top:1px solid var(--ink); }
+.athena-rec{ counter-increment:rec; padding:12px 0; border-bottom:1px solid var(--line); display:grid; gap:4px; }
+.athena-rec__kind{ font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); }
+.athena-rec__kind::before{ content:counter(rec, greek-numeral) "\00a0\00a0"; color:var(--ink-muted); }
+.athena-rec h4{ font-size:18px; line-height:1.25; }
+.athena-rec p{ font-size:14px; line-height:1.5; color:var(--ink-soft); margin:0; }
+.athena-rec .athena-rec__fact{ font-size:12.5px; color:var(--ink-muted); }
+.athena-rec .tlink, .athena-summary__cost .tlink{ font-size:14px; justify-self:start; }
+.athena-summary__cost{ margin:12px 0 0; padding:12px 14px; background:var(--paper); display:grid; gap:6px; }
+.athena-summary__cost p{ margin:0; font-size:14px; line-height:1.5; color:var(--ink); }
+.athena-notes{ list-style:none; margin:12px 0 0; padding:0; display:grid; gap:8px; }
+.athena-notes li{ position:relative; padding-left:18px; font-size:13.5px; line-height:1.5; color:var(--ink-soft); }
+.athena-notes li::before{ content:"\2192"; position:absolute; left:0; top:0; color:var(--accent); font-weight:700; }
+.athena-notes a{ color:var(--accent); text-decoration:underline; text-underline-offset:3px; }
+.athena-answers{ margin:14px 0 0; border-top:1px solid var(--line); }
+.athena-answers summary{
+  cursor:pointer; padding:10px 0 4px; font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft);
+}
+.athena-answers summary:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.athena-answers dl{ margin:6px 0 0; display:grid; gap:0; font-size:13.5px; }
+.athena-answers dl div{ display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:1px dashed var(--line); }
+.athena-answers dt{ color:var(--ink-muted); flex:none; }
+.athena-answers dd{ margin:0; font-weight:600; color:var(--ink); text-align:right; overflow-wrap:anywhere; }
+.athena-summary__actions{ display:grid; gap:8px; margin-top:16px; }
+.athena-summary__actions .btn{ padding:13px 18px; }
+.athena-summary__small{ margin:10px 0 0; font-size:11.5px; line-height:1.45; color:var(--ink-muted); }
+
+/* Contact form note when fields were prefilled */
+.form__prefill{
+  margin:0; padding:10px 14px; font-size:14px; line-height:1.5; color:var(--ink);
+  background:var(--gold-soft); border-left:3px solid var(--accent);
+}
+
+@media (max-width:600px){
+  .athena-fab{ padding:5px; right:max(14px, env(safe-area-inset-right)); bottom:max(14px, env(safe-area-inset-bottom)); }
+  .athena-fab__label{
+    position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;
+  }
+  .athena{ inset:0; width:100%; height:100%; border:0; border-radius:0; }
+  .athena__head{ padding-top:max(12px, env(safe-area-inset-top)); }
+  .athena__foot{ padding-bottom:max(10px, env(safe-area-inset-bottom)); }
+  .athena-bubble{ max-width:86%; }
+}
+@media print{ .athena, .athena-fab{ display:none !important; } }
+
+/* 16. GREEK HISTORY PAGE (greek-history.html) =============================
+   A chronological ledger: dates in a left column, a rail with a marker, and
+   the story on the right. Collapses to rail + text on phones.
+   ========================================================================== */
+.chrono{ list-style:none; margin:0; padding:0; border-top:1px solid var(--ink); --pad:clamp(26px,3.2vw,40px); }
+.chrono__era{
+  display:grid; grid-template-columns:minmax(0,.85fr) 36px minmax(0,2.15fr);
+  grid-template-areas:"when rail body"; column-gap:clamp(14px,2.4vw,32px);
+}
+.chrono__when{ grid-area:when; padding-block:var(--pad); }
+.chrono__rail{ grid-area:rail; position:relative; }
+.chrono__rail::before{
+  content:""; position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--line); transform:translateX(-50%);
+}
+.chrono__rail::after{
+  content:""; position:absolute; left:50%; top:calc(var(--pad) + 10px); width:13px; height:13px;
+  background:var(--bg); border:2px solid var(--accent); transform:translateX(-50%) rotate(45deg);
+}
+.chrono__era:first-child .chrono__rail::before{ top:calc(var(--pad) + 10px); }
+.chrono__era:last-child .chrono__rail::before{ bottom:auto; height:calc(var(--pad) + 10px); }
+.chrono__era.is-key .chrono__rail::after{ background:var(--accent); }
+.chrono__body{ grid-area:body; padding-block:var(--pad); border-bottom:1px solid var(--line); }
+.chrono__era:last-child .chrono__body{ border-bottom:0; }
+.chrono__num{ display:block; font-family:var(--serif); font-size:15px; color:var(--ink-muted); margin-bottom:6px; }
+.chrono__dates{
+  display:block; font-family:var(--serif); font-size:clamp(24px,2.5vw,34px); line-height:1.08; letter-spacing:-.015em;
+  color:var(--accent); font-variant-numeric:lining-nums;
+}
+.chrono__period{ display:block; margin-top:8px; font-family:var(--mono); font-size:12px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-muted); }
+.chrono__body h3{ margin-bottom:10px; }
+.chrono__body p{ font-size:16px; color:var(--ink-soft); max-width:66ch; }
+.chrono__marks{ list-style:none; display:flex; flex-wrap:wrap; gap:6px 18px; margin:14px 0 0; padding:12px 0 0; border-top:1px dashed var(--line); }
+.chrono__marks li{ font-family:var(--mono); font-size:12.5px; color:var(--ink); }
+.chrono__marks b{ color:var(--accent); font-weight:500; margin-right:6px; }
+.chrono__body .chrono__visit{ margin-top:12px; font-size:14.5px; color:var(--ink); }
+.chrono__visit::before{
+  content:""; display:inline-block; width:12px; height:12px; margin-right:8px; vertical-align:-1px;
+  background:url("../img/meander.svg") no-repeat center / 12px 12px;
+}
+
+/* Where-the-word-comes-from list */
+.etym{ list-style:none; margin:var(--s-5) 0 0; padding:0; border-top:1px solid var(--ink); }
+.etym li{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.6fr); gap:12px 24px; padding:14px 0; border-bottom:1px solid var(--line); align-items:baseline; }
+.etym .w{ font-family:var(--serif); font-size:22px; color:var(--ink); line-height:1.2; }
+.etym .w small{ display:block; font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); margin-top:4px; }
+.etym p{ margin:0; font-size:15px; color:var(--ink-soft); }
+
+/* Sites to visit: reuse .cities, add a ruled list under each caption */
+.sites{ list-style:none; margin:12px 0 0; padding:0; border-top:1px solid var(--line); max-width:52ch; }
+.sites li{ padding:9px 0; border-bottom:1px solid var(--line); font-size:15px; color:var(--ink-soft); }
+.sites b{ color:var(--ink); font-weight:600; }
+
+@media (max-width:760px){
+  .chrono__era{
+    grid-template-columns:24px minmax(0,1fr); grid-template-areas:"rail when" "rail body"; column-gap:14px;
+  }
+  .chrono__when{ padding-bottom:6px; }
+  .chrono__body{ padding-top:6px; }
+  .chrono__rail::after{ top:calc(var(--pad) + 22px); }
+  .chrono__era:first-child .chrono__rail::before{ top:calc(var(--pad) + 22px); }
+  .chrono__era:last-child .chrono__rail::before{ height:calc(var(--pad) + 22px); }
+  .etym li{ grid-template-columns:1fr; gap:4px; }
+}
