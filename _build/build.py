@@ -86,7 +86,7 @@ HEAD = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Open+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 
 <script type="application/ld+json">
@@ -96,7 +96,7 @@ HEAD = """<!doctype html>
   "name": "{site}",
   "alternateName": "EuroHellenic Education & Student Services",
   "url": "{url}",
-  "logo": "{url}/assets/img/favicon.svg",
+  "logo": "{url}/assets/img/logo.svg",
   "description": "Independent education guidance for international students who want to study in Greece.",
   "email": "{email}",
   "areaServed": ["IN", "CN", "PH", "NG", "EG", "AE"],
@@ -115,6 +115,7 @@ HEADER = """
 <header class="header">
   <nav class="nav shell" aria-label="Primary">
     <a class="brand" href="index.html" aria-label="{site} — home">
+      <img class="brand__mark" src="assets/img/logo-mark.svg" alt="" width="36" height="39">
       <span class="brand__name">EuroHellenic<small>Study in Greece</small></span>
     </a>
 
@@ -148,6 +149,7 @@ FOOTER = """
     <div class="footer__grid">
       <div>
         <a class="brand" href="index.html" aria-label="{site} — home">
+          <img class="brand__mark" src="assets/img/logo-mark-white.svg" alt="" width="36" height="39">
           <span class="brand__name">EuroHellenic<small>Education &amp; student services</small></span>
         </a>
         <p style="margin-top:22px;max-width:32ch">

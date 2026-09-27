@@ -2,8 +2,8 @@
    EuroHellenic — Education & Student Services
    assets/css/style.css
    --------------------------------------------------------------------------
-   Direction: editorial, not "landing page". Warm paper, near-black ink,
-   one accent (terracotta), real photographs, rules instead of boxes.
+   Direction: editorial, not "landing page". Clean white, deep navy ink,
+   one accent (Aegean blue), real photographs, rules instead of boxes.
    Radius and shadow are deliberately almost absent.
 
    1.  Tokens            7.  Page hero + home hero
@@ -17,25 +17,25 @@
 /* 1. TOKENS ================================================================ */
 :root{
   /* Surfaces */
-  --bg:          #faf8f4;   /* page */
-  --paper:       #f1ece3;   /* alternate band */
+  --bg:          #f8fafc;   /* page */
+  --paper:       #eaf1f8;   /* alternate band — pale Aegean */
   --white:       #ffffff;
-  --dark:        #1e2326;   /* the one dark surface (charcoal, not navy) */
-  --dark-2:      #2a3034;
+  --dark:        #0b2a4a;   /* the one dark surface: deep sea navy */
+  --dark-2:      #133a63;
 
   /* Ink */
-  --ink:         #1b1d1f;
-  --ink-soft:    #45464a;
-  --ink-muted:   #625f58;   /* 5.6:1 on --bg */
-  --line:        #d9d2c6;
-  --line-strong: #1b1d1f;
-  --on-dark:     #ece7de;
-  --on-dark-soft:#b3b0a8;
+  --ink:         #0f1d2e;
+  --ink-soft:    #3a4a5e;
+  --ink-muted:   #55657a;   /* 5.6:1 on --bg */
+  --line:        #d3dde8;
+  --line-strong: #0f1d2e;
+  --on-dark:     #e8eff7;
+  --on-dark-soft:#a9bcd0;
 
   /* The accent. One. */
-  --accent:      #b3401e;   /* terracotta — 5.3:1 on --bg */
-  --accent-dark: #8f3217;
-  --accent-light:#ec9a74;   /* for use on --dark only */
+  --accent:      #0d5eaf;   /* Greek flag blue — 6.4:1 on --bg */
+  --accent-dark: #0a4a8a;
+  --accent-light:#8cc4f2;   /* for use on --dark only */
 
   /* Legacy names still referenced by inline styles in page fragments */
   --navy:        var(--ink);
@@ -45,13 +45,13 @@
   --gold:        var(--accent);
   --gold-light:  var(--accent-light);
   --gold-ink:    var(--accent);
-  --gold-soft:   #f3d9cc;
+  --gold-soft:   #dbe9f6;
   --line-warm:   var(--line);
   --sky:         var(--paper);
 
   /* Type */
-  --serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
-  --sans:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --serif: "Playfair Display", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans:  "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Spacing */
@@ -223,15 +223,15 @@ p a:not(.btn):not(.tlink){ color:var(--accent); text-decoration:underline; text-
 }
 .nav{ height:100%; display:flex; align-items:center; justify-content:space-between; gap:var(--s-5); }
 
-.brand{ display:flex; align-items:baseline; gap:10px; flex:none; }
-.brand__mark{ display:none; }
+.brand{ display:flex; align-items:center; gap:12px; flex:none; }
+.brand__mark{ width:36px; height:39px; flex:none; display:block; }
 .brand__name{
-  font-family:var(--serif); font-size:25px; font-weight:500; letter-spacing:-.02em;
-  color:var(--ink); line-height:1;
+  font-family:var(--serif); font-size:25px; font-weight:500; letter-spacing:-.01em;
+  color:var(--accent-dark); line-height:1;
 }
 .brand__name small{
-  display:inline; font-family:var(--mono); font-size:11px; font-weight:400; letter-spacing:.04em;
-  color:var(--ink-muted); margin-left:10px; text-transform:uppercase;
+  display:block; font-family:var(--sans); font-size:9.5px; font-weight:500; letter-spacing:.32em;
+  color:var(--accent-dark); margin-top:5px; text-transform:uppercase;
 }
 
 .nav__links{ display:flex; align-items:center; gap:clamp(18px,2.4vw,34px); list-style:none; margin-left:auto; }
@@ -359,7 +359,7 @@ p a:not(.btn):not(.tlink){ color:var(--accent); text-decoration:underline; text-
 .band img{ width:100%; height:100%; object-fit:cover; }
 .band figcaption{
   position:absolute; left:0; right:0; bottom:0; padding:clamp(20px,3vw,40px) 0;
-  background:linear-gradient(to top, rgba(18,20,22,.72), rgba(18,20,22,0));
+  background:linear-gradient(to top, rgba(8,28,50,.74), rgba(8,28,50,0));
   color:#fff;
 }
 .band figcaption .shell{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; }
@@ -639,7 +639,7 @@ input[type=range]::-moz-range-thumb{
 .form label,.form__row > *{ min-width:0; }
 .form input,.form select,.form textarea{
   width:100%; min-width:0; max-width:100%;
-  padding:12px 13px; border:1px solid #bfb7aa; border-radius:var(--radius);
+  padding:12px 13px; border:1px solid #b6c3d1; border-radius:var(--radius);
   font:inherit; font-size:16px; color:var(--ink); background:var(--white);
   transition:border-color .2s var(--ease);
   font-weight:400;
@@ -666,9 +666,9 @@ input[type=range]::-moz-range-thumb{
 .footer__bar{
   margin-top:clamp(36px,4vw,56px); padding-top:var(--s-5); border-top:1px solid rgba(255,255,255,.14);
   display:flex; justify-content:space-between; align-items:flex-start; gap:var(--s-5); flex-wrap:wrap;
-  font-size:13px; color:#9c998f;
+  font-size:13px; color:#93a6ba;
 }
-.footer__bar p{ font-size:13px; color:#9c998f; }
+.footer__bar p{ font-size:13px; color:#93a6ba; }
 
 /* 12. MOTION =============================================================== */
 /* A quiet fade only. Nothing slides, spins or counts up for show. */
@@ -740,4 +740,5 @@ input[type=range]::-moz-range-thumb{
   .band figcaption{ position:static; background:var(--dark); padding:20px 0 24px; }
   .hero__facts{ flex-direction:column; gap:4px; }
   .brand__name{ font-size:23px; }
+  .brand__mark{ width:28px; height:30px; }
 }

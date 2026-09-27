@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" role="presentation">
+  <!-- Olive branch ornament: stem with paired leaves and two olives -->
+  <g fill="none" stroke="#0d5eaf" stroke-width="1.6" stroke-linecap="round">
+    <path d="M6 30 C36 26 70 18 114 10"/>
+  </g>
+  <g fill="#0d5eaf">
+    <path d="M22 28 C18 20 22 13 30 12 C31 20 28 26 22 28Z"/>
+    <path d="M26 28 C31 35 40 36 45 31 C39 26 32 25 26 28Z"/>
+    <path d="M46 23 C42 15 46 8 54 7 C55 15 52 21 46 23Z"/>
+    <path d="M50 23 C55 30 64 31 69 26 C63 21 56 20 50 23Z"/>
+    <path d="M70 18 C67 11 71 5 78 4 C79 11 76 16 70 18Z"/>
+    <path d="M74 18 C79 24 87 25 91 20 C86 16 79 15 74 18Z"/>
+    <path d="M94 13 C92 7 95 2 101 2 C102 8 99 12 94 13Z"/>
+    <path d="M97 13 C101 18 108 18 111 14 C107 11 101 10 97 13Z"/>
+  </g>
+  <g fill="#0a4a8a">
+    <ellipse cx="38" cy="19" rx="3.2" ry="4" transform="rotate(-20 38 19)"/>
+    <ellipse cx="84" cy="30" rx="3.2" ry="4" transform="rotate(-20 84 30)"/>
+  </g>
+  <path d="M38 23 L40 26 M84 26 L82 22" stroke="#0a4a8a" stroke-width="1.2"/>
+</svg>
