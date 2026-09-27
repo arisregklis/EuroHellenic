@@ -407,7 +407,7 @@ p a:not(.btn):not(.tlink){ color:var(--accent); text-decoration:underline; text-
 .steps{ list-style:none; display:grid; grid-template-columns:1fr 1fr; column-gap:clamp(28px,6vw,96px); counter-reset:st; }
 .steps li{ counter-increment:st; display:grid; grid-template-columns:3.2rem 1fr; gap:4px 16px; padding:26px 0; border-top:1px solid rgba(255,255,255,.16); }
 .steps li::before{
-  content:counter(st); grid-row:1 / 4; font-family:var(--serif); font-size:44px; line-height:.9; color:var(--accent-light);
+  content:counter(st, greek-numeral); grid-row:1 / 4; font-family:var(--serif); font-size:44px; line-height:.9; color:var(--accent-light);
 }
 .steps .when{ font-family:var(--mono); font-size:12px; color:var(--on-dark-soft); text-transform:uppercase; letter-spacing:.04em; }
 .steps h3{ color:#fff; font-size:23px; }
@@ -742,3 +742,47 @@ input[type=range]::-moz-range-thumb{
   .brand__name{ font-size:23px; }
   .brand__mark{ width:28px; height:30px; }
 }
+
+/* Ancient Greek numerals (6 is stigma, not zeta) */
+@counter-style greek-numeral{
+  system:fixed; symbols:"Αʹ" "Βʹ" "Γʹ" "Δʹ" "Εʹ" "Ϛʹ" "Ζʹ" "Ηʹ" "Θʹ" "Ιʹ"; suffix:""; fallback:decimal;
+}
+
+/* 14. GREEK DETAILS ========================================================
+   Restrained Hellenic touches: a running meander (Greek key) as a border,
+   Cycladic arches on photographs, Greek numerals for the steps, and an
+   olive sprig on pull quotes. Ornament files live in assets/img/.
+   ========================================================================== */
+.hero{ border-bottom:0; }
+.hero::after{
+  content:""; display:block; height:18px;
+  background:url("../img/meander.svg") repeat-x left center / 18px 18px;
+}
+.section--navy, .footer{ position:relative; }
+.section--navy::before, .section--navy::after, .footer::before{
+  content:""; position:absolute; left:0; right:0; height:16px; opacity:.55;
+  background:url("../img/meander-light.svg") repeat-x left center / 16px 16px;
+}
+.section--navy::before{ top:18px; }
+.section--navy::after{ bottom:18px; }
+.footer::before{ top:18px; opacity:.35; }
+
+/* Cycladic arches: whitewashed doorways, not boxes */
+.advisor__photo img,
+.phero__img img,
+.city img{ border-radius:50vw 50vw 0 0; }
+.phero__img{ margin-bottom:0; }
+
+/* Olive sprig above pull quotes */
+.pull::before{
+  content:""; display:block; width:120px; height:40px; margin-bottom:14px;
+  background:url("../img/olive.svg") no-repeat left center / contain;
+}
+.section--navy .pull::before{ filter:brightness(0) invert(1); opacity:.8; }
+
+/* Small meander tile before section labels */
+.section-head .eyebrow::before, .intro .eyebrow::before{
+  content:""; display:inline-block; width:12px; height:12px; margin-right:10px; vertical-align:-1px;
+  background:url("../img/meander.svg") no-repeat center / 12px 12px;
+}
+.section--navy .section-head .eyebrow::before{ background-image:url("../img/meander-light.svg"); }
