@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="EuroHellenic EH meander monogram">
+  <rect x="2" y="2" width="116" height="116" fill="#0b2a4a"/>
+  <rect x="8.5" y="8.5" width="103" height="103" fill="none" stroke="#8cc4f2" stroke-width="1.6"/>
+  <!-- E and H as one unbroken Greek-key line: the base of the E runs on into the stem of the H -->
+  <path fill="#ffffff" d="M22 24 H52 V34 H32 V55 H46 V65 H32 V86 H66 V24 H76 V55 H88 V24 H98 V96 H88 V65 H76 V96 H22 Z"/>
+</svg>

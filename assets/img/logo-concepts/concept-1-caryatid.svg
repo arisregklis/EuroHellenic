@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="EuroHellenic">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 150" role="img" aria-label="EuroHellenic — Caryatid concept">
+  <!-- Wordmark set in <text>: Playfair Display where installed/loaded, Georgia fallback. -->
+  <g transform="translate(-22 5) scale(1.17)">
   <defs>
     <mask id="cary-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
       <rect width="120" height="120" fill="#fff"/>
@@ -32,7 +34,7 @@
       </g>
     </mask>
   </defs>
-  <g fill="#ffffff" mask="url(#cary-cut)">
+  <g fill="#0b2a4a" mask="url(#cary-cut)">
     <!-- entablature -->
     <rect x="28" y="3" width="64" height="4.5"/>
     <rect x="31" y="7.5" width="58" height="7.5"/>
@@ -57,4 +59,8 @@
     <!-- plinth -->
     <rect x="38" y="108.6" width="44" height="7"/>
   </g>
+</g>
+  <text x="118" y="84" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="60" fill="#0b2a4a">EuroHellenic</text>
+  <line x1="121" y1="103" x2="151" y2="103" stroke="#0d5eaf" stroke-width="2"/>
+  <text x="161" y="108" font-family="'Open Sans', 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="3.4" fill="#0d5eaf">EDUCATION &amp; STUDENT SERVICES</text>
 </svg>
